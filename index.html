@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODS - Resíduos Itanhaém</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+</head>
+<body>
+    <!-- Cabeçalho Fixo -->
+    <header class="topo-fixo">
+        <div class="logo">
+            <h1>ODS - Resíduos Itanhaém</h1>
+            <p>Conscientização sobre descarte de resíduos</p>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="#map-container">Pontos de Coleta</a></li>
+                <li><a href="#impacto">Impacto na Fauna</a></li>
+                <li><a href="#meuprojeto">Sobre o Projeto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="banner" id="home">
+        <h1>Proteja as Praias de Itanhaém</h1>
+        <p>Juntos podemos reduzir os resíduos e preservar a vida marinha através da coleta seletiva e educação ambiental.</p>
+        <a href="#participe" class="cta-button">Como Ajudar?</a>
+        <!-- Modal/Banner de Ajuda -->
+<div class="overlay" id="overlay"></div>
+<div class="modal-ajuda" id="modalAjuda">
+    <span class="fechar-modal" id="fecharModal">&times;</span>
+    <h2>Como Você Pode Ajudar</h2>
+    <p>Recolher o lixo ao sair da praia.</p>
+    <p>- os animais marinhos e aves, agradecem.</p>
+    <p>Indo além, seguindo a secretaria do meio ambiente e ongs e projetos ambientais existentes na cidade.</p>
+    <p>Participar dos multirões de limpeza, e se engajar em educação ambiental.</p>
+    <p>Redes Sociais a seguir:  </p>
+</div>
+    </section>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <div id="ecoponto" class="secao">
+            <div class="cards-container">
+                <h2>Ecopontos</h2>
+                <div class="cards">
+                    <h3>O que é um ecoponto ?</h3>
+                    <p>Um ecoponto é um local destinado ao descarte de resíduos recicláveis, como papel, plástico, vidro e metal. Esses pontos são importantes para a coleta seletiva e ajudam a reduzir o impacto ambiental.</p>
+                </div>
+                
+                <div class="cards"> <h3>Objetivos do ecoponto</h3>
+                    <p> &bull; Segundo o site da Prefeitura de Itanhaém  Economia dos recursos orçamentários, pois é economicamente viável recolher entulho em um único ponto do que em vários, além da velocidade que se ganha no sistema de limpeza urbana e principalmente para evitar trânsitos em vias públicas e, com isso, evitar poluição para a camada de ozônio.</p>
+                    <p> &bull; Entulho descartado irregularmente, fatalmente é carregado para os bueiros, o que desencadeia seu entupimento com elevados custos para desobstrução.</p>
+                </div>
+            
+                <div class="cards">
+                    <h3>O que levar?</h3>
+                    <p>&bull;Resíduos Verdes: São os que na sua composição apresentam: madeira, arbustos, ramos, troncos de árvores, caules, folhas, flores e ervas.</p>
+                    <p>&bull;Resíduos da Construção Civil: Provenientes de construções, reformas, reparos e demolições de obras de construção civil, comunmente chamados de entulhos de obras.
+                    Exemplos: Tijolos, blocos, telhas, placas de revestimento, argamassa, concreto, terra, cerâmica, madeira.</p>
+                    <p>&bull;Resíduos Volumosos: Constituídos por material volumoso não orgânico, de origem doméstica e não removidos pela coleta pública municipal regular, como móveis e equipamentos domésticos inutilizados, grandes embalagens e peças de madeira e outros não caracterizados como resíduos industriais. Exemplos: Mobílias e sofás desmontados, colchões.</p>   
+                    <p>&bull;  Resíduo Reciclável: Papel, Papelão, Plástico, Vidro e Metal, devidamente limpos.</p>
+                    <p>&bull; Óleo doméstico: Óleo para cozinhar.</p>
+                </div>
+                
+                <div class="cards">
+                    <h3>O que não levar?</h3>
+                    <p>&bull;Resíduo Biológico: Remédio (vencidos ou não), resíduo séptico (hospitalar, seringa e gaze) e animal morto.</p>
+                    <p>&bull;Resíduo Químico: Resíduo industrial, lata de tinta, amianto, embalagem e resíduo agrotóxico, resíduo de posto de combustível, pneu, lâmpada, pilha, bateria e resíduo automotivo.</p>
+                    <p>&bull;Resíduo Domiciliar: Resto de alimentos e outros materiais orgânicos.</p>
+                    <p>&bull;Resíduos RCC Classe D: Resíduos perigosos, oriundos da construção como: Tintas, solventes, latas com resíduos de tintas e solventes, resíduos de materiais que contenham amianto ou outros produtos nocivos à saúde. </p>
+                    <p>&bull;Resíduos Líquidos: Óleos: automotivos e industriais; entre outros.</p> 
+                </div>
+            </div>
+        </div>
+
+        <div id="map-container">
+            <div id="header">
+                <h2>Ecopontos em Itanhaém - SP</h2>
+                <p>Locais para descarte adequado de resíduos</p>
+            </div>
+            <div id="map"></div>
+        </div>
+
+        <!-- Seção Impacto na Fauna Marinha -->
+        <section id="impacto" class="secao">
+            <h2>Impacto do Lixo na Fauna Marinha</h2>
+            <div class="cards-impacto">
+                <div class="card">
+                    <h3>Impacto da Poluição nos Animais Marinhos</h3>
+                    <p>O lixo no mar mata milhares de animais anualmente. Tartarugas confundem plásticos com comida, aves marinhas ficam presas em redes, e peixes ingerem microplásticos, causando sufocamento, intoxicação e morte. A poluição destrói habitats e ameaça espécies inteiras.</p>
+                </div>
+                <div class="card">
+                    <h3>Lixo no Oceano e a Cadeia Alimentar Humana</h3>
+                    <p>Microplásticos e toxinas são ingeridos por peixes e moluscos, entrando na cadeia alimentar. Ao consumir frutos do mar contaminados, o homem absorve químicos perigosos, como metais pesados, que podem causar doenças, incluindo câncer e distúrbios hormonais.</p>
+                </div>
+                <div class="card">
+                    <h3>Estatísticas Alarmantes</h3>
+                    <p>Anualmente, 8 milhões de toneladas de lixo chegam aos oceanos. Em São Paulo, apenas um programa retirou 20 toneladas de resíduos do mar e manguezais (SEMIL-SP, 2024). As "ilhas de plástico" já somam 5 grandes manchas, a maior no Pacífico, com 1,6 milhão de km² (3x o tamanho da França).</p>
+                </div>
+                <div class="card">
+                    <h3>Práticas Sustentáveis Salvam o Planeta</h3>
+                    <p>Reduzir plásticos, reciclar e participar de mutirões de limpeza preservam ecossistemas marinhos, protegem a fauna e flora e garantem alimentos seguros para o homem. Cada ação individual conta para um futuro sustentável.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="decomposition-section">
+            <h2>Quanto tempo o lixo leva para se decompor no oceano?</h2>
+            
+            <div class="item">
+                <img src="https://www.reciclasampa.com.br/imgs/conteudos/06_lixo_nas_praias_um_problema_que_tem_solucao_padrao_01.jpg" alt="Plástico no oceano">
+                <div class="item-content">
+                    <h3>Plástico (garrafas, sacolas, etc.)</h3>
+                    <p><span class="highlight">450 a 1.000 anos</span></p>
+                    <p><span class="arrow">→</span> Microplásticos permanecem indefinidamente, contaminando a cadeia alimentar.</p>
+                </div>
+            </div>
+            
+            <div class="item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR41K4ikwZ3Bw0JpLtsKEjPTs8zE1pEJoEV7u0Vy5iTFS8JkFyrFGWPAQJOAooGG_ykmuM&usqp=CAU" alt="Vidro na praia">
+                <div class="item-content">
+                    <h3>Vidro</h3>
+                    <p><span class="highlight">1 milhão de anos ou mais</span></p>
+                    <p><span class="arrow">→</span> Não se biodegrada, apenas se fragmenta em pedaços menores.</p>
+                </div>
+            </div>
+            
+            <div class="item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHaAcfE24JVNQMxYSi3nN5GGsimXyAvMTOnw&s" alt="Papel molhado">
+                <div class="item-content">
+                    <h3>Papel</h3>
+                    <p><span class="highlight">2 a 6 semanas (se molhado) a 5 meses</span></p>
+                    <p><span class="arrow">→</span> Em condições marinhas, pode demorar mais devido à baixa oxigenação.</p>
+                </div>
+            </div>
+            
+            <div class="item">
+                <img src="https://imagens.ebc.com.br/Retx3eEFbneQaRYzPIn3Op2TfNo=/754x0/smart/http://agenciabrasil.ebc.com.br/sites/default/files/thumbnails/image/dia_mundial_de_limpeza_de_praias_e_rios_abr_190920195877.jpg?itok=X_8KL7Qr" alt="Bitucas de cigarro">
+                <div class="item-content">
+                    <h3>Bitucas de cigarro</h3>
+                    <p><span class="highlight">5 a 10 anos</span></p>
+                    <p><span class="arrow">→</span> Contêm toxinas como nicotina e metais pesados, que poluem a água e intoxicam animais.</p>
+                </div>
+            </div>
+        </section>
+ <!-- Seção Tutoriais -->
+ <section id="meuprojeto" class="secao">
+    <h2>Meu Projeto</h2>
+        <div class="projeto">
+            <h3>Resumo:</h3>
+            <p>Este projeto de extensão, desenvolvido no curso de Análise e Desenvolvimento de Sistemas, tem como foco a aplicação das Objetivos de Desenvolvimento Sustentável (ODS) com ênfase na vida marinha (ODS 14). A escolha do tema se deu pela importância das praias como principal atrativo turístico e fonte de renda do município, juntamente com a pesca. </p>
+            <p>Diante da crescente poluição causada pelo descarte inadequado de resíduos por moradores e turistas, o projeto busca promover a conscientização ambiental e incentivar boas práticas de descarte. O site desenvolvido apresenta um mapa com ecopontos, informa sobre os impactos ambientais do lixo no ecossistema marinho e traz curiosidades sobre o tempo de decomposição de diferentes materiais.</p>
+            <p>A proposta visa unir tecnologia e sustentabilidade, contribuindo para a preservação dos recursos naturais e o desenvolvimento sustentável da região.</p>
+        </div>
+</section>
+
+    </main>
+
+            
+
+    <!-- Rodapé -->
+    <footer>
+        <p>Projeto de Extensão da Cruzeiro do Sul - ODS Resíduos Itanhaém - Desenvolvido por Ariane Novaes</p>
+        <p>Email: novaesariane14@gmail.com </p>
+        <p>Sites utilizados e créditos: Prefeitura de Itanhaém, SEMIL-SP </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    
+        <!-- Leaflet JS -->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+                integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+                crossorigin=""></script>
+</body>
+</html>
